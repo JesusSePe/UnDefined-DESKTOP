@@ -50,7 +50,7 @@ public class Login extends JFrame {
 		ImageIcon img = new ImageIcon("src"+File.separator+"images"+File.separator+"logoKadamm.png");
 		setIconImage(img.getImage());
 		setResizable(false);
-		setSize(466, 289);
+		setSize(450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.decode("#374151"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,12 +59,12 @@ public class Login extends JFrame {
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon("src"+File.separator+"images"+File.separator+"movilLoginDegr.png"));
-		label_1.setBounds(237, -50, 269, 317);
+		label_1.setBounds(240, -35, 235, 350);
 		contentPane.add(label_1);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("src"+File.separator+"images"+File.separator+"trofeoLoginDegr.png"));
-		label.setBounds(-63, -50, 260, 328);
+		label.setBounds(-25, -35, 235, 350);
 		contentPane.add(label);
 		
 		JLabel lblKadamm = new JLabel("KADAMM");
