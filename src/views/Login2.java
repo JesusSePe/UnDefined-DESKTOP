@@ -18,7 +18,7 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 
 @SuppressWarnings("serial")
-public class Login extends JFrame {
+public class Login2 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -31,7 +31,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					Login2 frame = new Login2();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -44,7 +44,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public Login2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("KADAMM");
 		ImageIcon img = new ImageIcon("src"+File.separator+"images"+File.separator+"logoKadamm.png");
@@ -64,7 +64,7 @@ public class Login extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("src"+File.separator+"images"+File.separator+"trofeoLoginDegr.png"));
-		label.setBounds(-63, -50, 260, 328);
+		label.setBounds(-23, -50, 260, 328);
 		contentPane.add(label);
 		
 		JLabel lblKadamm = new JLabel("KADAMM");
@@ -93,14 +93,14 @@ public class Login extends JFrame {
 		passwordField.setBounds(216, 123, 100, 20);
 		contentPane.add(passwordField);
 		
+		JCheckBox chckbxRememberMyPassword = new JCheckBox("Remember my password");
+		chckbxRememberMyPassword.setForeground(new Color(175, 238, 238));
+		chckbxRememberMyPassword.setBackground(new Color(0, 0, 0, 0));
+		chckbxRememberMyPassword.setBounds(125, 157, 180, 25);
+		contentPane.add(chckbxRememberMyPassword);
+		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(170, 192, 110, 35);
 		contentPane.add(btnLogin);
-		
-		JCheckBox chckbxRememberMyPassword = new JCheckBox("Remember my password");
-		chckbxRememberMyPassword.setForeground(new Color(175, 238, 238));
-		chckbxRememberMyPassword.setBounds(125, 157, 180, 25);
-		chckbxRememberMyPassword.setBackground(Color.decode("#374151"));
-		contentPane.add(chckbxRememberMyPassword);
 	}
 }
