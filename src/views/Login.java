@@ -47,7 +47,7 @@ public class Login extends JFrame {
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("KADAMM");
-		ImageIcon img = new ImageIcon("src"+File.separator+"images"+File.separator+"logoKadamm.png");
+		ImageIcon img = new ImageIcon("src"+File.separator+"images"+File.separator+"logoKadamm.PNG");
 		setIconImage(img.getImage());
 		setResizable(false);
 		setSize(450, 300);
