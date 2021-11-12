@@ -9,5 +9,5 @@
   </TiposPreguntas>
   <TimeoutPreguntas>30</TimeoutPreguntas>
   <NumMaxPreguntas>15</NumMaxPreguntas>
-  <RutaXMLKahoots>"ruta"</RutaXMLKahoots>
+  <RutaXMLKahoots>"src"+File.separator+"kahootXML"</RutaXMLKahoots>
 </Configuration>
