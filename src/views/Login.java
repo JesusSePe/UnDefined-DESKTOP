@@ -7,9 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import configuration.ReadXMLDomParser;
+import dao.daoImpl.UserDao;
+import view.App;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.SwingConstants;
@@ -22,7 +26,6 @@ import javax.swing.JCheckBox;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -34,6 +37,8 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					App apphibernate = new App();
+					apphibernate.main(args);
 					ReadXMLDomParser readXMLDomParser = new ReadXMLDomParser();
 					readXMLDomParser.readXML();
 					Login frame = new Login();
@@ -101,6 +106,16 @@ public class Login extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(170, 192, 110, 35);
 		contentPane.add(btnLogin);
+		btnLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UserDao userDao = new UserDao();
+				userDao.g
+				
+			}
+			
+		});
 		
 		JCheckBox chckbxRememberMyPassword = new JCheckBox("Remember my password");
 		chckbxRememberMyPassword.setForeground(new Color(175, 238, 238));
