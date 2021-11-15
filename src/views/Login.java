@@ -6,15 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Exception.ErrorControl;
 import configuration.ReadXMLDomParser;
-import dao.daoImpl.UserDao;
-import view.App;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
+import java.util.Optional;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -111,13 +112,21 @@ public class Login extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UserDao userDao = new UserDao();
-				boolean validate = userDao.validateLogin(textField.getText(), String.valueOf(passwordField.getPassword()));
-				if (validate) {
-					KadammManagement kadammManagemente = new KadammManagement();
-					kadammManagemente.main(null);
+				List<User> users = userDao.getAll();
+				for(User element: users) {
+					System.out.println(element);
+					if (element.getUsername().equals(textField.getText())){
+							if(element.getPassword().equals(String.valueOf(passwordField.getPassword()))){
+								KadammManagement kadammManagemente = new KadammManagement();
+								kadammManagemente.main(null);
+							}else {
+								new ErrorControl("Password incorrect", "Warning");
+							}
+					}else {
+						new ErrorControl("Not found user!", "Error");
+					}
 				}
 			}
-			
 		});
 		
 		JCheckBox chckbxRememberMyPassword = new JCheckBox("Remember my password");

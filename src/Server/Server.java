@@ -1,18 +1,13 @@
-package Server
+package Server;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import test.common.TestService;
-
-import lipermi.exception.LipeRMIException;
-import lipermi.handler.CallHandler;
-import lipermi.net.IServerListener;
-import lipermi.net.Server;
+import net.sf.lipermi.handler.CallHandler;
 
 public class Server implements ServerInterface {
 
-    public ping() {
+    public String ping() {
         try {
             CallHandler callHandler = new CallHandler();
             callHandler.registerGlobal(TestService.class, this);
