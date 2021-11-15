@@ -111,8 +111,11 @@ public class Login extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UserDao userDao = new UserDao();
-				userDao.getValidateLogin(textField.getText(), passwordField.getText());
-				
+				boolean validate = userDao.validateLogin(textField.getText(), String.valueOf(passwordField.getPassword()));
+				if (validate) {
+					KadammManagement kadammManagemente = new KadammManagement();
+					kadammManagemente.main(null);
+				}
 			}
 			
 		});
