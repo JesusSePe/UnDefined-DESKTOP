@@ -111,7 +111,7 @@ public class Login extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				UserDao userDao = new UserDao();
-				userDao.g
+				userDao.getValidateLogin(textField.getText(), passwordField.getText());
 				
 			}
 			
