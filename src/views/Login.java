@@ -38,7 +38,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					App apphibernate = new App();
+					HibernateApp apphibernate = new HibernateApp();
 					apphibernate.main(args);
 					ReadXMLDomParser readXMLDomParser = new ReadXMLDomParser();
 					readXMLDomParser.readXML();
