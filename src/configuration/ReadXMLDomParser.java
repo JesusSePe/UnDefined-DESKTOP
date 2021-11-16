@@ -1,8 +1,14 @@
+<<<<<<< HEAD:src/configuration/ReadXMLDomParser.java
 package configXML;
+=======
+package configuration;
+>>>>>>> bc73795992ce38dec272026cc7e0216020c15e0c:src/Utilities/ReadXMLDomParser.java
 
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,10 +23,15 @@ import org.xml.sax.SAXException;
 
 public class ReadXMLDomParser {
 
-	private static final String FILENAME = "src"+File.separator+"configXML"+File.separator+"config.xml";
-
-	public static void main(String[] args) {
-
+	//private static final String FILENAME = "src"+File.separator+"configuration"+File.separator+"config.xml";
+	private static final String FILENAME = "src"+File.separator+"configuration"+File.separator+"config.xml";
+	private static Configuration configuration;
+	
+	//@SuppressWarnings("unused")
+	//public static void main(String[] args) throws NumberFormatException {
+	public void readXML() {
+		List<String> listTypes = new ArrayList<>();
+		
 		// Instantiate the Factory
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
@@ -54,13 +65,16 @@ public class ReadXMLDomParser {
 			String timeout = element.getElementsByTagName("TimeoutPreguntas").item(0).getTextContent();
 			String nummax = element.getElementsByTagName("NumMaxPreguntas").item(0).getTextContent();
 			String ruta = element.getElementsByTagName("RutaXMLKahoots").item(0).getTextContent();
-
-			// print text
-			System.out.println("Idioma : " + idioma);
-			System.out.println("Tipos de Preguntas : \n\t" + tipo1 + "\n\t" + tipo2 + "\n\t" + tipo3 + "\n\t" + tipo4);
-			System.out.println("Timeout entre Preguntas : " + timeout);
-			System.out.println("Numero Maximo de Preguntas : " + nummax);
-			System.out.println("Ruta XML de Kahoots : " + ruta);
+			
+			// Fill object
+			
+			listTypes.add(tiposNodeList.item(0).getTextContent());
+			listTypes.add(tiposNodeList.item(1).getTextContent());
+			listTypes.add(tiposNodeList.item(2).getTextContent());
+			listTypes.add(tiposNodeList.item(3).getTextContent());
+			configuration = new Configuration(idioma, listTypes, Integer.valueOf(timeout), Integer.valueOf(nummax), ruta);
+			
+			System.out.println(configuration);
 
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();

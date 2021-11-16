@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import configuration.ReadXMLDomParser;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -35,6 +38,8 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					ReadXMLDomParser readXMLDomParser = new ReadXMLDomParser();
+					readXMLDomParser.readXML();
 					Login frame = new Login();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
