@@ -2,11 +2,14 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
@@ -18,10 +21,12 @@ import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.AbstractListModel;
 
 public class KadammManagement extends JFrame {
 
 	private JPanel contentPane;
+	public static String selected;
 
 	/**
 	 * Launch the application.
@@ -43,13 +48,14 @@ public class KadammManagement extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public KadammManagement() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("KADAMM");
+		setTitle("KADAMM MANAGEMENT");
 		ImageIcon img = new ImageIcon("src"+File.separator+"images"+File.separator+"logoKadamm.PNG");
 		setIconImage(img.getImage());
 		setResizable(false);
-		setBounds(100, 100, 675, 450);
+		setSize(675, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.decode("#374151"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,9 +71,6 @@ public class KadammManagement extends JFrame {
 		scrollPane.setBounds(23, 33, 390, 300);
 		contentPane.add(scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
-		
 		JButton btnNewButton = new JButton("View Detail");
 		btnNewButton.setBounds(225, 345, 190, 27);
 		contentPane.add(btnNewButton);
@@ -75,7 +78,35 @@ public class KadammManagement extends JFrame {
 		JButton btnNewButton_1 = new JButton("PLAY");
 		btnNewButton_1.setBounds(124, 382, 190, 27);
 		contentPane.add(btnNewButton_1);
+		btnNewButton_1.setEnabled(false); 
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KadammWaitingRoom kadammWaitingRoom = new KadammWaitingRoom();
+				kadammWaitingRoom.main(selected);
+				dispose();
+			}
+		});
 		
+		@SuppressWarnings("rawtypes")
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"kadamm1", "kadamm2", "kadamm3", "kadamm4"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		scrollPane.setViewportView(list);
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					selected = list.getSelectedValue().toString();
+					btnNewButton_1.setEnabled(true);
+			    }
+			}
+		});
 		JButton btnNewButton_2 = new JButton("Create Kadamm");
 		btnNewButton_2.setBounds(23, 345, 190, 27);
 		contentPane.add(btnNewButton_2);

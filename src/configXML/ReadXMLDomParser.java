@@ -1,4 +1,4 @@
-package Utilities;
+package configXML;
 
 
 import java.io.File;
