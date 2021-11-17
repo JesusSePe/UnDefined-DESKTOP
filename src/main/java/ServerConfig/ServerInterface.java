@@ -1,4 +1,4 @@
-package Server
+package ServerConfig;
 
 public interface ServerInterface {
 

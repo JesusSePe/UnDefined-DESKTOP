@@ -1,8 +1,6 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,14 +8,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.GroupLayout;
+
+import Objects.Kahoot;
+import modelDAO.KahootDao;
+
 import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -25,13 +27,14 @@ import javax.swing.AbstractListModel;
 
 public class KadammManagement extends JFrame {
 
+	private static final long serialVersionUID = 9176526853703877107L;
 	private JPanel contentPane;
 	public static String selected;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -48,14 +51,14 @@ public class KadammManagement extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
 	public KadammManagement() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("KADAMM MANAGEMENT");
-		ImageIcon img = new ImageIcon("src"+File.separator+"images"+File.separator+"logoKadamm.PNG");
+		ImageIcon img = new ImageIcon("src" + File.separator +"main"+File.separator+"java"+File.separator+"images"+File.separator+"logoKadamm.PNG");
 		setIconImage(img.getImage());
 		setResizable(false);
-		setSize(675, 450);
+		setSize(675, 460);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.decode("#374151"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,11 +71,11 @@ public class KadammManagement extends JFrame {
 		contentPane.add(lblKadamms);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 33, 390, 300);
+		scrollPane.setBounds(15, 33, 390, 300);
 		contentPane.add(scrollPane);
 		
 		JButton btnNewButton = new JButton("View Detail");
-		btnNewButton.setBounds(225, 345, 190, 27);
+		btnNewButton.setBounds(217, 345, 190, 27);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("PLAY");
@@ -80,6 +83,7 @@ public class KadammManagement extends JFrame {
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.setEnabled(false); 
 		btnNewButton_1.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				KadammWaitingRoom kadammWaitingRoom = new KadammWaitingRoom();
 				kadammWaitingRoom.main(selected);
@@ -87,15 +91,16 @@ public class KadammManagement extends JFrame {
 			}
 		});
 		
-		@SuppressWarnings("rawtypes")
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"kadamm1", "kadamm2", "kadamm3", "kadamm4"};
+			KahootDao kahootDao = new KahootDao();
+			Kahoot kahoot = new Kahoot();
+			List<String> values = kahootDao.getAllKahoots().stream().map(name->kahoot.getTitle()).collect(Collectors.toList());
 			public int getSize() {
-				return values.length;
+				return values.size();
 			}
 			public Object getElementAt(int index) {
-				return values[index];
+				return values.get(index);
 			}
 		});
 		scrollPane.setViewportView(list);
@@ -108,19 +113,19 @@ public class KadammManagement extends JFrame {
 			}
 		});
 		JButton btnNewButton_2 = new JButton("Create Kadamm");
-		btnNewButton_2.setBounds(23, 345, 190, 27);
+		btnNewButton_2.setBounds(15, 345, 190, 27);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Filter by Topic");
-		btnNewButton_3.setBounds(428, 345, 225, 27);
+		btnNewButton_3.setBounds(420, 345, 225, 27);
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Edit Topics");
-		btnNewButton_4.setBounds(428, 382, 225, 27);
+		btnNewButton_4.setBounds(420, 382, 225, 27);
 		contentPane.add(btnNewButton_4);
 		
 		JScrollPane scrollPane_1_1_1 = new JScrollPane();
-		scrollPane_1_1_1.setBounds(428, 198, 225, 135);
+		scrollPane_1_1_1.setBounds(420, 198, 225, 135);
 		contentPane.add(scrollPane_1_1_1);
 		
 		JList list_2 = new JList();
@@ -128,11 +133,11 @@ public class KadammManagement extends JFrame {
 		
 		JLabel lblChosenTopics = new JLabel("Chosen Topics");
 		lblChosenTopics.setForeground(new Color(175, 238, 238));
-		lblChosenTopics.setBounds(428, 179, 85, 17);
+		lblChosenTopics.setBounds(420, 179, 85, 17);
 		contentPane.add(lblChosenTopics);
 		
 		JScrollPane scrollPane_1_1 = new JScrollPane();
-		scrollPane_1_1.setBounds(428, 33, 225, 135);
+		scrollPane_1_1.setBounds(420, 33, 225, 135);
 		contentPane.add(scrollPane_1_1);
 		
 		JList list_1 = new JList();
@@ -140,7 +145,7 @@ public class KadammManagement extends JFrame {
 		
 		JLabel lblTopics = new JLabel("Topics");
 		lblTopics.setForeground(new Color(175, 238, 238));
-		lblTopics.setBounds(428, 12, 38, 17);
+		lblTopics.setBounds(420, 12, 38, 17);
 		contentPane.add(lblTopics);
 	}
 }

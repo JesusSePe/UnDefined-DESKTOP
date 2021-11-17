@@ -1,22 +1,19 @@
-package Server
+package ServerConfig;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import test.common.TestService;
-
-import lipermi.exception.LipeRMIException;
-import lipermi.handler.CallHandler;
-import lipermi.net.IServerListener;
-import lipermi.net.Server;
+import net.sf.lipermi.exception.LipeRMIException;
+import net.sf.lipermi.handler.CallHandler;
+import net.sf.lipermi.net.IServerListener;
 
 public class Server implements ServerInterface {
 
-    public ping() {
+	public Server() {
         try {
             CallHandler callHandler = new CallHandler();
-            callHandler.registerGlobal(TestService.class, this);
-            Server server = new Server();
+            callHandler.registerGlobal(ServerInterface.class, this);
+            net.sf.lipermi.net.Server server = new net.sf.lipermi.net.Server();
             server.bind(7777, callHandler);
             server.addServerListener(new IServerListener() {
                 
@@ -35,11 +32,11 @@ public class Server implements ServerInterface {
             e.printStackTrace();
         }
     }
-    
-    @Override
-    public String getResponse(String data) {
-        System.out.println("A client is pinging!");
+
+	@Override
+	public String ping() {
+		System.out.println("A client is pinging!");
         return "ping";
-    }
+	}
 
 }

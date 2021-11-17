@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -8,24 +7,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JCheckBox;
-import javax.swing.JTextPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class KadammCreator extends JFrame {
 
+	private static final long serialVersionUID = -7760529119031318954L;
 	private JPanel contentPane;
 	private JTextField textField;
 
@@ -49,10 +45,11 @@ public class KadammCreator extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	public KadammCreator() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("CREATE KADAMM");
-		ImageIcon img = new ImageIcon("src"+File.separator+"images"+File.separator+"logoKadamm.PNG");
+		ImageIcon img = new ImageIcon("src" + File.separator +"main"+File.separator+"java"+File.separator+"images"+File.separator+"logoKadamm.PNG");
 		setIconImage(img.getImage());
 		setResizable(false);
 		setSize(675, 450);
@@ -62,7 +59,7 @@ public class KadammCreator extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblKadamms = new JLabel("Títol");
+		JLabel lblKadamms = new JLabel("TITULO");
 		lblKadamms.setForeground(new Color(175, 238, 238));
 		lblKadamms.setBounds(23, 20, 38, 17);
 		contentPane.add(lblKadamms);

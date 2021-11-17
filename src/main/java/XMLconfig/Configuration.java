@@ -1,4 +1,4 @@
-package configuration;
+package XMLconfig;
 
 import java.util.List;
 
