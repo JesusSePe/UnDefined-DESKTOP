@@ -12,9 +12,16 @@ import view.App;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+<<<<<<< HEAD
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+=======
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+>>>>>>> eb730a4cf53046aec4d4b4c6dcc40c68048fcb26
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -69,7 +76,7 @@ public class Login extends JFrame {
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon("src"+File.separator+"images"+File.separator+"movilLoginDegr.png"));
-		label_1.setBounds(240, -35, 235, 350);
+		label_1.setBounds(250, -35, 235, 350);
 		contentPane.add(label_1);
 		
 		JLabel label = new JLabel("");
@@ -80,31 +87,40 @@ public class Login extends JFrame {
 		JLabel lblKadamm = new JLabel("KADAMM");
 		lblKadamm.setHorizontalAlignment(SwingConstants.CENTER);
 		lblKadamm.setForeground(Color.CYAN);
-		lblKadamm.setFont(new Font("Chiller", Font.BOLD, 70));
-		lblKadamm.setBounds(0, 21, 452, 61);
+		try {
+		    Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("src"+File.separator+"Utilities"+File.separator+"chiller.ttf")).deriveFont(Font.BOLD, 70);
+		    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		    ge.registerFont(customFont);
+		    lblKadamm.setFont(customFont);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} catch(FontFormatException e) {
+		    e.printStackTrace();
+		}
+		lblKadamm.setBounds(0, 31, 452, 61);
 		contentPane.add(lblKadamm);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(216, 88, 100, 20);
+		textField.setBounds(216, 98, 100, 20);
 		contentPane.add(textField);
 		
 		JLabel lblUser = new JLabel("User:");
 		lblUser.setForeground(new Color(175, 238, 238));
-		lblUser.setBounds(128, 92, 86, 17);
+		lblUser.setBounds(128, 102, 86, 17);
 		contentPane.add(lblUser);
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setForeground(new Color(175, 238, 238));
-		lblPassword.setBounds(128, 127, 86, 17);
+		lblPassword.setBounds(128, 137, 86, 17);
 		contentPane.add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(216, 123, 100, 20);
+		passwordField.setBounds(216, 133, 100, 20);
 		contentPane.add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(170, 192, 110, 35);
+		btnLogin.setBounds(170, 202, 110, 35);
 		contentPane.add(btnLogin);
 		btnLogin.addActionListener(new ActionListener() {
 
@@ -122,7 +138,7 @@ public class Login extends JFrame {
 		
 		JCheckBox chckbxRememberMyPassword = new JCheckBox("Remember my password");
 		chckbxRememberMyPassword.setForeground(new Color(175, 238, 238));
-		chckbxRememberMyPassword.setBounds(125, 157, 180, 25);
+		chckbxRememberMyPassword.setBounds(125, 167, 180, 25);
 		chckbxRememberMyPassword.setBackground(Color.decode("#374151"));
 		contentPane.add(chckbxRememberMyPassword);
 	}

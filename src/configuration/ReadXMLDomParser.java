@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/configuration/ReadXMLDomParser.java
+package configXML;
+=======
 package configuration;
+>>>>>>> bc73795992ce38dec272026cc7e0216020c15e0c:src/Utilities/ReadXMLDomParser.java
 
 
 import java.io.File;
